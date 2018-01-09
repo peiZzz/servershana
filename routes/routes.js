@@ -4,6 +4,6 @@ exports.routes = function(app){
 
 	//匹配路由路径
 
-	app.get('/validcode', RouteController.validCodeController);
+	app.get('/message', RouteController.sendMessageController);
 }
 
