@@ -1,0 +1,26 @@
+{
+  "name": "servershana",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/peiZzz/servershana.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/peiZzz/servershana/issues"
+  },
+  "homepage": "https://github.com/peiZzz/servershana#readme",
+  "dependencies": {
+    "@alicloud/sms-sdk": "^1.0.3",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "mysql": "^2.15.0",
+    "q": "^1.5.1"
+  }
+}
