@@ -15,7 +15,7 @@ class Utils{
     let smsClient = new SMSClient({accessKeyId, secretAccessKey})
     //发送短信
     return smsClient.sendSMS({
-      PhoneNumbers: '13113407350', //接收短信手机号
+      PhoneNumbers: phone, //接收短信手机号
       SignName: 'dachui锤', //签名名称
       TemplateCode: 'SMS_119092284', //模板号
       TemplateParam: '{"code":' + code +'}' //模板验证码

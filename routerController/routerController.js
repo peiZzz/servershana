@@ -16,6 +16,7 @@ class RouterController {
 		//随机生成6位验证码
 		let time = new Date().getTime().toString();
 		let code = time.slice(time.length - 6);
+		//req.query:请求查询参数
 		Utils.sendMessage(req.query.phone,code)
 			.then((data) => {
 				let {Code} = data
