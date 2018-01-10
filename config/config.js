@@ -7,8 +7,8 @@ let server ={
 exports.mysqlOptions = {
 	host: server.host,
 	user: 'root',
-	password: 'love you',
-	database: 'guole'
+	password: '',
+	database: 'shana'
 }
 //导出server
 exports.server = server;
