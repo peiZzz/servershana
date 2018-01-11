@@ -6,9 +6,9 @@ exports.routes = function(app){
 
 	app.get('/message', RouteController.sendMessageController);
 
-	//app.post('/register',RouteController.registerController);
+	app.post('/register',RouteController.registerController);
 
-	app.get('/register',RouteController.registerController);
+	// app.get('/register',RouteController.registerController);
 }	
 
 

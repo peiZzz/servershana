@@ -33,21 +33,33 @@ class RouterController {
 			}, (err) => {
 				console.log(err)
 				res.json({msg:'发送短信验证码失败',status:0});
-			})*/
+			})
+		*/
 	}
 
 	//注册功能
 	registerController(req,res) {
-		//req.body 请求体
-		console.log(req.query);
-		let selectSQL = SQL.registerSQL(req.query);
+		//查询手机号码是否注册
+
+		let selectSQL = SQL.findOneSQL(req.body,'phone');
 		API.query(selectSQL)
-		  .then(result =>{
-		  	res.send(result[0]);
-		  })
-		  .catch(err =>{
-		  	res.send('出错');
-		  })
+		.then(result => {
+			res.send(result[0]);
+		})
+		.catch(err =>{
+			res.json({msg:'出错了'});
+		})
+		//req.body 请求体
+		// console.log(req.body);
+		// Utils.addCrypto(req.body, 'pwd');
+		// let sql = SQL.registerSQL(req.body);
+		// API.query(sql)
+		//   .then(result =>{
+		//   	res.send(result[0]);
+		//   })
+		//   .catch(err =>{
+		//   	res.send('出错');
+		//   })
 	}
 }
 module.exports = new RouterController();

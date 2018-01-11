@@ -23,7 +23,7 @@ class Utils{
   	});
 	}
 	//加密功能
-	  addCrypto(o, field) {
+	addCrypto(o, field) {
 	    //使用md5方式加密
 	    let md5 = crypto.createHash('md5');
 
