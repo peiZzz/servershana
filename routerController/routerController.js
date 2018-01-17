@@ -111,6 +111,29 @@ class RouterController {
 				res.json(common.login.error);
 			})
 	}
+
+	//首页查询
+	homeController (req,res){
+		let sql = SQL.findHomeSQL();
+		API.query(sql)
+			.then(result =>{
+				let data = {};
+				data.banner = result[0];
+				let productsql = SQL.findProductSQL();
+				API.query(productsql)
+					.then(result=>{
+						data.product = result[0];
+						res.send(data);
+					})
+					.catch(err => {
+						res.send('出错啦');
+					})
+				
+			})
+			.catch(err => {
+				res.send('出错啦');
+			})
+	}
 }
 module.exports = new RouterController();
 

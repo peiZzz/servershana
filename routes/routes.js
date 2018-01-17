@@ -10,6 +10,6 @@ exports.routes = function(app){
 
 	app.post('/login',RouteController.loginController);
 	// app.get('/register',RouteController.registerController);
-}	
+	app.get('/home',RouteController.homeController);
 
-
+}
