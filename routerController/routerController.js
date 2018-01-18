@@ -114,25 +114,23 @@ class RouterController {
 
 	//首页查询
 	homeController (req,res){
-		let sql = SQL.findHomeSQL();
-		API.query(sql)
-			.then(result =>{
-				let data = {};
-				data.banner = result[0];
-				let productsql = SQL.findProductSQL();
-				API.query(productsql)
-					.then(result=>{
-						data.product = result[0];
-						res.send(data);
-					})
-					.catch(err => {
-						res.send('出错啦');
-					})
-				
-			})
-			.catch(err => {
-				res.send('出错啦');
-			})
+		let sql = SQL.findIndexclassifySQL();
+		let data = [];
+
+		 for(let i=0;i<sql.length;i++){
+		 	  API.query(sql[i])
+				.then(result =>{
+					   data.push(result[0]);
+					   console.log(i)
+					   if(i == sql.length - 1){
+					   	  res.send(data)
+					   }
+				})
+				.catch(err => {
+					res.send('出错啦');
+				})
+		 }
+			
 	}
 }
 module.exports = new RouterController();
