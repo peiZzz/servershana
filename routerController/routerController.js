@@ -114,24 +114,39 @@ class RouterController {
 
 	//首页查询
 	homeController (req,res){
+		// let sqlArr = SQL.findIndexclassifySQL();
+		// let data = [];
+		// let names = ['banner','indexclassify','product','newproduct'];
+		// sqlArr.forEach((sql,i)=>{
+		// 	API.query(sql)
+		// 		.then(result =>{
+		// 			data[name[i]] = result[0];
+		// 			if(i == sqlArr.length -1){
+		// 				res.send(data);
+		// 			}
+		// 		})
+		// 		.catch(err=>{
+		// 			res.send('error');
+		// 		})
+		// })
+
 		let sql = SQL.findIndexclassifySQL();
 		let data = [];
-
-		 for(let i=0;i<sql.length;i++){
-		 	  API.query(sql[i])
-				.then(result =>{
-					   data.push(result[0]);
-					   console.log(i)
-					   if(i == sql.length - 1){
-					   	  res.send(data)
-					   }
-				})
-				.catch(err => {
-					res.send('出错啦');
-				})
-		 }
+		for(let i = 0;i<sql.length;i++){
+			API.query(sql[i])
+			.then(result =>{
+				data.push(result[0]);
+				if(i == sql.length - 1){
+					res.send(data)
+				}
+			})
+			.catch(err =>{
+				res.send('error');
+			})
+		}
 			
 	}
+	
 }
 module.exports = new RouterController();
 
