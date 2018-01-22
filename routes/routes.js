@@ -13,4 +13,6 @@ exports.routes = function(app){
 	app.get('/home',RouteController.homeController);
 
 	app.get('/emailcode',RouteController.emailcodeController);
+
+	app.post('/modifypwd',RouteController.modifypwdController);
 }

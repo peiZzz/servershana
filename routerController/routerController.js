@@ -153,16 +153,40 @@ class RouterController {
 
 		let time = new Date().getTime().toString();
 		let code = time.slice(time.length - 6);
-		let options = {
-			form:'13113407350@163.com',//发件地址 
-			to:req.query.email,//收件地址
-			subject:'修改密码',//主题标题
-			text:'验证码',
-			html:'<b>您的验证码为:'+ code +',一切索取验证码的都是骗子</b>'
-		};
-		Utils.sendEmail(options,() => {
-			res.send({msg:'验证码已经发送至邮箱，请注意查收!',statusCode:700});
-		})
+		let sql = SQL.findOneEmailSQL(req.query.email);
+		API.query(sql)
+			.then(result =>{
+				if(result[0].length == 1){
+					let options = {
+						from:'13113407350@163.com',//发件地址 
+						to:req.query.email,//收件地址
+						subject:'修改密码',//主题标题
+						text:'验证码',
+						html:'<b>您的验证码为:'+ code +',一切索取验证码的都是骗子</b>'
+					};
+						Utils.sendEmail(options,() => {
+							res.send({msg:'验证码已经发送至邮箱，请注意查收!',statusCode:700,validCode: code});
+						})
+				}else {
+					res.json({msg:'该邮箱未被绑定',statusCode:801})
+				}
+			})
+			.catch(err =>{
+				res.send('出错了')
+			})
+	}
+
+	//修改密码
+	modifypwdController(req,res){
+		Utils.addCrypto(req.body,'pwd');
+		let sql = SQL.modifyPwdSQL(req.body);
+		API.query(sql)
+			.then(result =>{
+				res.json({msg:'修改密码成功',statusCode:800});
+			})
+			.catch(err=>{
+				res.send('错啦');
+			})
 	}
 	
 }
