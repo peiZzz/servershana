@@ -146,6 +146,24 @@ class RouterController {
 		}
 			
 	}
+
+	//邮箱
+	emailcodeController(req,res){
+		//随机生成6位验证码
+
+		let time = new Date().getTime().toString();
+		let code = time.slice(time.length - 6);
+		let options = {
+			form:'13113407350@163.com',//发件地址 
+			to:req.query.email,//收件地址
+			subject:'修改密码',//主题标题
+			text:'验证码',
+			html:'<b>您的验证码为:'+ code +',一切索取验证码的都是骗子</b>'
+		};
+		Utils.sendEmail(options,() => {
+			res.send({msg:'验证码已经发送至邮箱，请注意查收!',statusCode:700});
+		})
+	}
 	
 }
 module.exports = new RouterController();

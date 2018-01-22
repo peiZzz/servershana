@@ -12,4 +12,5 @@ exports.routes = function(app){
 	// app.get('/register',RouteController.registerController);
 	app.get('/home',RouteController.homeController);
 
+	app.get('/emailcode',RouteController.emailcodeController);
 }
